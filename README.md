@@ -162,7 +162,7 @@ David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twit
 Samuel Martinez - [Github](https://github.com/samuelsrmv) / [Twitter](https://twitter.com/samu1Martinez)
 -
 Stiven Espinosa Zapata - [Github](https://github.com/StivenZ) / [Twitter](https://twitter.com/vksteven12)
-
+-
 
 Second part of Airbnb: Joann Vuong
 ## License
