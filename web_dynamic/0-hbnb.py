@@ -18,10 +18,6 @@ def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-@app.route('/hello')
-def myfn():
-    return 'hello world'
-
 
 @app.route('/0-hbnb/', strict_slashes=False)
 def hbnb():
