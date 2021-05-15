@@ -20,7 +20,7 @@
       <section class="filters">
 	<div class="locations">
 	  <h3>States</h3>
-	  <h4>&nbsp;</h4>
+	  <h4 id="h4-id">&nbsp;</h4>
 	  <div class="popover">
 	    <ul>
 	      {% for state in states %}
@@ -42,7 +42,10 @@
 	  <div class="popover">
 	    <ul>
           {% for amenity in amenities %}
-          <li><INPUT type="checkbox">{{ amenity.name }}</li>
+          <li><INPUT type="checkbox"
+			 		 data-name=":amenity_name"
+					 data-id=":amenity_id">{{ amenity.name }}
+		  </li>
 	      {% endfor %}
 	    </ul>
 	  </div>
