@@ -3,18 +3,20 @@ $(document).ready(function () {
 
   const amenitiesList = [];
 
-  $('input[type=checkbox]').change(function () {
-    console.log('check');
-    const dataId = $(this).attr('data-name');
+  $("input[type=checkbox]").change(function() {
+
+    console.log("check")
+    let dataId = $(this).attr("data-id");
+    let dataName = $(this).attr("data-name");
     console.log(dataId);
-    if ($(this).is(':checked')) {
-      amenitiesList.push(dataId);
-    } else {
-      const myIndex = amenitiesList.indexOf(dataId);
-      amenitiesList.splice(myIndex, 1);
+    if ($(this).is(":checked")) {
+        amenitiesList[dataId] = dataName;
+    }
+    else {
+        delete amenitiesList[dataId];
     }
 
-    $('.amenities > h4').text(amenitiesList);
+    $(".amenities > h4").text(Object.values(amenitiesList).join(", "));
   });
 });
 const url = 'http://0.0.0.0:5001/api/v1/status/';

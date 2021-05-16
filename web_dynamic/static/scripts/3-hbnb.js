@@ -6,19 +6,19 @@ $(document).ready(function(){
 
   $("input[type=checkbox]").change(function() {
 
-      console.log("check")
-      let dataId = $(this).attr("data-name");
-      console.log(dataId);
-      if ($(this).is(":checked")) {
-          amenitiesList.push(dataId);
-      }
-      else {
-          let myIndex = amenitiesList.indexOf(dataId);
-          amenitiesList.splice(myIndex, 1);
-      }
+    console.log("check")
+    let dataId = $(this).attr("data-id");
+    let dataName = $(this).attr("data-name");
+    console.log(dataId);
+    if ($(this).is(":checked")) {
+        amenitiesList[dataId] = dataName;
+    }
+    else {
+        delete amenitiesList[dataId];
+    }
 
-      $(".amenities > h4").text(amenitiesList);
-  });
+    $(".amenities > h4").text(Object.values(amenitiesList).join(", "));
+});
 });
 const url = "http://0.0.0.0:5001/api/v1/status/";
 $.getJSON(url, function(data){
@@ -30,9 +30,9 @@ $.getJSON(url, function(data){
   }
 });
 
-$.ajax({url: "http://0.0.0.0:5001/api/v1/places_search/", console.log("aquiiiiii"), success: function(result){
+$.ajax({url: "http://0.0.0.0:5001/api/v1/places_search/", success: function(result){
     
-    for (stiven of data) {
+    for (inner of data) {
       $('section.places').append('<article>hola stiven</article>')
       console.log(data)
     }
