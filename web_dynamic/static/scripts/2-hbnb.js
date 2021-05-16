@@ -20,6 +20,13 @@ $(document).ready(function(){
         $(".amenities > h4").text(amenitiesList);
     });
 
-    const myRequest = new Request("http://0.0.0.0:5001/api/v1/status/");
-    console.log("Este es mi request:", myRequest);
+
+    $.get("http://0.0.0.0:5001/api/v1/status/", function(data){
+        console.log(data, data.body, data.status);
+        if (data === 200) {
+            $("#api_status").addClass("available");
+        } else {
+            $("#api_status").removeClass("available");
+        }
+    });
 });
