@@ -1,12 +1,9 @@
 $(document).ready(function(){
 
-  console.log("Se ejecuta 1");
-
   let amenitiesList = [];
 
   $("input[type=checkbox]").change(function() {
 
-    console.log("check")
     let dataId = $(this).attr("data-id");
     let dataName = $(this).attr("data-name");
     console.log(dataId);
@@ -18,11 +15,11 @@ $(document).ready(function(){
     }
 
     $(".amenities > h4").text(Object.values(amenitiesList).join(", "));
+  });
 });
-});
-const url = "http://0.0.0.0:5001/api/v1/status/";
+const url = "http://localhost:5001/api/v1/status/";
 $.getJSON(url, function(data){
-  console.log("si entro", data, data.status);
+
   if (data.status === 'OK') {
       $("#api_status").addClass("available");
   } else {
@@ -30,10 +27,32 @@ $.getJSON(url, function(data){
   }
 });
 
-$.ajax({url: "http://0.0.0.0:5001/api/v1/places_search/", success: function(result){
-    
-    for (inner of data) {
-      $('section.places').append('<article>hola stiven</article>')
-      console.log(data)
+$.ajax({
+  url: "http://localhost:5001/api/v1/places_search/",
+  type:"post",
+  data: "{}",
+  contentType: "application/json",
+  success: function(result){
+    for (inner of result) {
+      console.log("this is my result: ", result);
+      console.log("this is each inner: ", inner);
+      $('section.places').append(`
+      <article>
+	  <div class="title_box">
+	    <h2> ${inner.name} </h2>
+	    <div class="price_by_night">${inner.price_by_night}</div>
+	  </div>
+	  <div class="information">
+	    <div class="max_guest">${inner.max_guest} Guest` + (inner.max_guest !== 1 ? "s" : "") + `</div>
+            <div class="number_rooms">${inner.number_rooms} Bedroom` + (inner.number_rooms !== 1 ? "s" : "") + `</div>
+            <div class="number_bathrooms">${inner.number_bathrooms} Bathroom` + (inner.number_bathrooms !== 1 ? "s" : "") + `</div>
+	  </div>
+	  <div class="user">
+            <b>Owner:</b>
+          </div>
+          <div class="description">`)
     }
-  }});
+  }
+});
+
+
